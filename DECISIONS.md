@@ -1,5 +1,5 @@
 # DECISIONS.md  (about 150-200 words in total - plain language, your own words)
-
+#
 1. **Indexes.** Which indexes did you create, and which query or guarantee does each one serve? Which one did you consider and reject?
 Unique employees.emp_code; unique attendance_logs(emp_code, date) for race-safe punch-in, per-employee queries and the trend. (date desc, emp_code) serves the list sort and leaderboard month scan; (status, date, emp_code) the status filter; (emp_code, punch_in desc) finds the record to punch out. Rejected a separate index on late_minutes: queries filter by month first
 2. **Punch-in race.** Two identical punch-in requests arrive at the same instant. Walk through exactly what happens in your code.
